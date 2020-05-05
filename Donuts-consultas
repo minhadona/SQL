@@ -1,0 +1,140 @@
+/*
+Winston's Donut logs
+This table of logs shows how many donuts Winston eats at each year of his life,
+plus any particular reason to explain his eating habits.
+Collected by: https://www.khanacademy.org/profile/mhogwarts/
+ */
+ 
+CREATE TABLE winstons_donut_logs (
+    id TEXT PRIMARY KEY,
+    status TEXT,
+    years_old INTEGER,
+    donuts_eaten INTEGER,
+    reason TEXT
+    );
+INSERT INTO winstons_donut_logs VALUES (0, "new born winston lvl 0", 0, 0, "");
+INSERT INTO winstons_donut_logs VALUES (1, "baby winston", 1, 10, "(Gummed)");
+INSERT INTO winstons_donut_logs VALUES (2, "baby winston", 2, 40, "(Gummed)");
+INSERT INTO winstons_donut_logs VALUES (3, "baby winston", 3, 50, "(Gummed)");
+INSERT INTO winstons_donut_logs VALUES (4, "toddler winston", 4, 300, "");
+INSERT INTO winstons_donut_logs VALUES (5, "toddler winston", 5, 400, "");
+INSERT INTO winstons_donut_logs VALUES (6, "kid winston", 6, 1200, "");
+INSERT INTO winstons_donut_logs VALUES (7, "kid winston", 7, 1000, "");
+INSERT INTO winstons_donut_logs VALUES (8, "kid winston", 8, 1000, "");
+INSERT INTO winstons_donut_logs VALUES (9, "kid winston", 9, 1000, "");
+INSERT INTO winstons_donut_logs VALUES (10, "winstween ", 10, 1500, "");/** tween means someone between 10 and 12 so I did winstween- tween not teen**/
+INSERT INTO winstons_donut_logs VALUES (11, "winstween ", 11, 500, "Braces");
+INSERT INTO winstons_donut_logs VALUES (12, "winstween ", 12, 300, "Braces");
+INSERT INTO winstons_donut_logs VALUES (13, "winsteen ", 13, 400, "Braces");
+INSERT INTO winstons_donut_logs VALUES (14, "winsteen ", 14, 1300, "No Braces");
+INSERT INTO winstons_donut_logs VALUES (15, "winsteen ", 15, 2000, "");
+INSERT INTO winstons_donut_logs VALUES (16, "winsteen ", 16, 2000, "");
+INSERT INTO winstons_donut_logs VALUES (17, "winsteen ", 17, 2000, "");
+INSERT INTO winstons_donut_logs VALUES (18, "winsteen ", 18, 2000, "");
+INSERT INTO winstons_donut_logs VALUES (19, "winsteen ", 19, 2000, "");
+INSERT INTO winstons_donut_logs VALUES (20, "young adult winston ", 20, 2000, "");
+INSERT INTO winstons_donut_logs VALUES (21, "young adult winston ", 21, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (22, "young adult winston ", 22, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (23, "young adult winston ", 23, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (24, "young adult winston ", 24, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (25, "young adult winston ", 25, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (26, "young adult winston ", 26, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (27, "young adult winston ", 27, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (28, "young adult winston ", 28, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (29, "young adult winston ", 29, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (30, "mature adult winston ", 30, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (31, "mature adult winston ", 31, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (32, "mature adult winston ", 32, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (33, "mature adult winston ", 33, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (34, "mature adult winston ", 34, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (35, "mature adult winston ", 35, 1548, "Healthier Eating");
+INSERT INTO winstons_donut_logs VALUES (36, "mature adult winston ", 36, 1500, "Healthier Eating");
+INSERT INTO winstons_donut_logs VALUES (37, "mature adult winston ", 37, 1500, "Healthier Eating");
+INSERT INTO winstons_donut_logs VALUES (38, "mature adult winston ", 38, 1500, "Healthier Eating");
+INSERT INTO winstons_donut_logs VALUES (39, "mature adult winston ", 39, 1500, "Healthier Eating");
+INSERT INTO winstons_donut_logs VALUES (40, "middle-aged adult winston ", 40, 2500, "Non-healthy eating");
+INSERT INTO winstons_donut_logs VALUES (41, "middle-aged adult winston ", 41, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (42, "middle-aged adult winston ", 42, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (43, "middle-aged adult winston ", 43, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (44, "middle-aged adult winston ", 44, 300, "Diet");
+INSERT INTO winstons_donut_logs VALUES (45, "middle-aged adult winston ", 45, 200, "Diet");
+INSERT INTO winstons_donut_logs VALUES (46, "middle-aged adult winston ", 46, 150, "Diet");
+INSERT INTO winstons_donut_logs VALUES (47, "middle-aged adult winston ", 47, 150, "Diet");
+INSERT INTO winstons_donut_logs VALUES (48, "middle-aged adult winston ", 48, 150, "Diet");
+INSERT INTO winstons_donut_logs VALUES (49, "middle-aged adult winston ", 49, 150, "Diet");
+INSERT INTO winstons_donut_logs VALUES (50, "old-ish adult winston", 50, 2500, "No diet");
+INSERT INTO winstons_donut_logs VALUES (51, "old-ish adult winston", 51, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (52, "old-ish adult winston", 52, 2500, "");
+INSERT INTO winstons_donut_logs VALUES (53, "old-ish adult winston", 53, 1436, "Current age");
+
+-- media da vida
+SELECT AVG(donuts_eaten) as media_da_vida_inteira from winstons_donut_logs; 
+
+-- total da vida
+SELECT SUM(donuts_eaten) as total_da_vida_inteira from winstons_donut_logs;
+
+-- idades onde ele comeu o maximo de donuts 
+SELECT years_old as idade, donuts_eaten as total_de_donuts_comidos FROM winstons_donut_logs  
+GROUP BY years_old HAVING donuts_eaten =  (SELECT MAX(donuts_eaten) FROM winstons_donut_logs)
+    ; 
+-- quantos anos no total ele comeu 2500 donuts
+SELECT COUNT(*) as total_de_anos_comendo_o_maximo_de_donuts FROM (SELECT years_old, donuts_eaten FROM winstons_donut_logs GROUP BY years_old HAVING donuts_eaten =  (SELECT MAX(donuts_eaten) FROM winstons_donut_logs));
+
+-- total por fase da vida
+SELECT status as fase,SUM(donuts_eaten) as total_de_donuts_por_fase FROM (SELECT  status, donuts_eaten FROM winstons_donut_logs) GROUP BY status ;
+
+-- média por fase da vida 
+SELECT status as fase, ROUND(AVG(donuts_eaten)) as media_de_donuts_por_fase FROM (SELECT  status, donuts_eaten FROM winstons_donut_logs) GROUP BY status ;
+
+-- tabela com idade e fase q ele comeu acima da media 
+SELECT years_old as idade, status, donuts_eaten as donuts_na_idade_acima_da_media FROM winstons_donut_logs 
+group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winstons_donut_logs) ;
+
+-- tabela com quantidade de donutscomidos acima da media
+SELECT COUNT(*) AS total_de_anos_comendo_donuts_acima_da_media FROM (SELECT years_old as idade, status, donuts_eaten as donuts_na_idade_acima_da_media FROM winstons_donut_logs 
+group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winstons_donut_logs) );
+
+-- idade media com açúcar acima da media
+SELECT AVG(years_old) as idade_media_acucarada FROM   (SELECT years_old, status, donuts_eaten FROM winstons_donut_logs group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winstons_donut_logs));
+
+-- qual fase da vida tem media maxima de donuts, e qual é a idade aproximada dessa fase 
+SELECT fase AS fase_com_média_máxima_de_donuts, media_de_idade as idade_media_dessa_fase,  MAX(media_de_donuts_por_fase) as media_maxima 
+    FROM (SELECT status as fase, ROUND(AVG(years_old)) as media_de_idade, ROUND(AVG(donuts_eaten)) as media_de_donuts_por_fase 
+        FROM (SELECT  status, donuts_eaten, years_old 
+            FROM winstons_donut_logs) 
+    GROUP BY status)
+    ;
+    
+-- quantas vezes ele comeu acima da media em cada fase
+
+SELECT COUNT(*) as qtd_de_vezes_acima_da_media, status as fase
+    from (SELECT years_old as idade, status, donuts_eaten as donuts_na_idade_acima_da_media FROM winstons_donut_logs 
+group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winstons_donut_logs) )
+    group by status;
+
+-- fase que ele se descontrolou mais vezes (+ anos açucarados)
+
+SELECT MAX(qtd_de_vezes_acima_da_media) as vezes_maximas_de_descontrole,fase 
+    FROM (
+    SELECT COUNT(*) as qtd_de_vezes_acima_da_media, status as fase
+        FROM (SELECT years_old as idade, status, donuts_eaten as donuts_na_idade_acima_da_media FROM winstons_donut_logs 
+group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winstons_donut_logs) )
+    group by status
+        )
+         ;
+
+/*    conclusões mais importantes:
+
+===considera-se descontrole o consumo anual ACIMA da média feita considerando a vida toda de Winston===
+
+> das 10 fases, mas 9 se desconsiderar "recém nasido", o descontrole acontece em 5 delas. No total, houve 28 incidências, com isso, aproximadamente 52,8% de sua vida (de 53 anos) foi baseada em compulsão e impulsividade. winston foi instável durante mais da metade de sua vida, portanto.
+
+> a fase com maior número de descontrole é a young adult winston, que compreende a faixa entre 20 e 29 anos. esta fase possui 10 anos de duração e tem registro e 10 descontroles, portanto ela foi INTEIRAMENTE marcada pelo seu transtorno alimentar 
+
+> a idade média de compulsão não é uma métrica explicativa, já que a reincidência de descontrole ocorreu em todas as casas de dezenas de idade durante a vida e isso desnivela esse indicador 
+
+> o maior valor de donuts comidos em um ano foi 2500 donuts, mas esta quantidade foi ingerida várias vezes em idades diferentes. houve 21 registros anuais com essa quantidade, sabendo que foram 28 incidencias na vida acima da media; podemos afirmar então, que 75% das incidencias foram representadas pelo nivel de compulsão MÁXIMO de wiston, demonstrando que durante o período de compulsão ele mantém costumes REALMENTE nocivos na maior parte do tempo
+
+COM ISSO, propõe-se a interrupção absoluta de donuts, sem doses homeopáticas para desmame pois, segundo as evidências demonstradas, winston não tem capacidade de consumir moderadamente.
+
+*/
