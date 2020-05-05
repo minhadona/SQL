@@ -67,17 +67,17 @@ INSERT INTO winstons_donut_logs VALUES (51, "old-ish adult winston", 51, 2500, "
 INSERT INTO winstons_donut_logs VALUES (52, "old-ish adult winston", 52, 2500, "");
 INSERT INTO winstons_donut_logs VALUES (53, "old-ish adult winston", 53, 1436, "Current age");
 
--- media da vida
+-- media por ano da vida toda
 SELECT AVG(donuts_eaten) as media_da_vida_inteira from winstons_donut_logs; 
 
--- total da vida
+-- total da vida toda 
 SELECT SUM(donuts_eaten) as total_da_vida_inteira from winstons_donut_logs;
 
 -- idades onde ele comeu o maximo de donuts 
 SELECT years_old as idade, donuts_eaten as total_de_donuts_comidos FROM winstons_donut_logs  
 GROUP BY years_old HAVING donuts_eaten =  (SELECT MAX(donuts_eaten) FROM winstons_donut_logs)
     ; 
--- quantos anos no total ele comeu 2500 donuts
+-- quantos anos no total ele comeu 2500 (maximo) de donuts
 SELECT COUNT(*) as total_de_anos_comendo_o_maximo_de_donuts FROM (SELECT years_old, donuts_eaten FROM winstons_donut_logs GROUP BY years_old HAVING donuts_eaten =  (SELECT MAX(donuts_eaten) FROM winstons_donut_logs));
 
 -- total por fase da vida
@@ -86,18 +86,18 @@ SELECT status as fase,SUM(donuts_eaten) as total_de_donuts_por_fase FROM (SELECT
 -- média por fase da vida 
 SELECT status as fase, ROUND(AVG(donuts_eaten)) as media_de_donuts_por_fase FROM (SELECT  status, donuts_eaten FROM winstons_donut_logs) GROUP BY status ;
 
--- tabela com idade e fase q ele comeu acima da media 
+-- tabela com idades e fases q ele comeu acima da media 
 SELECT years_old as idade, status, donuts_eaten as donuts_na_idade_acima_da_media FROM winstons_donut_logs 
 group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winstons_donut_logs) ;
 
--- tabela com quantidade de donutscomidos acima da media
+-- tabela com quantidade de donuts comidos acima da media
 SELECT COUNT(*) AS total_de_anos_comendo_donuts_acima_da_media FROM (SELECT years_old as idade, status, donuts_eaten as donuts_na_idade_acima_da_media FROM winstons_donut_logs 
 group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winstons_donut_logs) );
 
--- idade media com açúcar acima da media
+-- idade media com açúcar descontrolado (acima da média) 
 SELECT AVG(years_old) as idade_media_acucarada FROM   (SELECT years_old, status, donuts_eaten FROM winstons_donut_logs group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winstons_donut_logs));
 
--- qual fase da vida tem media maxima de donuts, e qual é a idade aproximada dessa fase 
+-- qual fase da vida tem a media mais alta de donuts, e qual é a idade media dessa fase 
 SELECT fase AS fase_com_média_máxima_de_donuts, media_de_idade as idade_media_dessa_fase,  MAX(media_de_donuts_por_fase) as media_maxima 
     FROM (SELECT status as fase, ROUND(AVG(years_old)) as media_de_idade, ROUND(AVG(donuts_eaten)) as media_de_donuts_por_fase 
         FROM (SELECT  status, donuts_eaten, years_old 
@@ -106,14 +106,12 @@ SELECT fase AS fase_com_média_máxima_de_donuts, media_de_idade as idade_media_
     ;
     
 -- quantas vezes ele comeu acima da media em cada fase
-
 SELECT COUNT(*) as qtd_de_vezes_acima_da_media, status as fase
     from (SELECT years_old as idade, status, donuts_eaten as donuts_na_idade_acima_da_media FROM winstons_donut_logs 
 group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winstons_donut_logs) )
     group by status;
 
 -- fase que ele se descontrolou mais vezes (+ anos açucarados)
-
 SELECT MAX(qtd_de_vezes_acima_da_media) as vezes_maximas_de_descontrole,fase 
     FROM (
     SELECT COUNT(*) as qtd_de_vezes_acima_da_media, status as fase
@@ -124,8 +122,7 @@ group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winston
          ;
 
 /*    conclusões mais importantes:
-
-===considera-se descontrole o consumo anual ACIMA da média feita considerando a vida toda de Winston===
+===== considera-se descontrole o consumo anual ACIMA da média considerando a vida toda de Winston ======
 
 > das 10 fases, mas 9 se desconsiderar "recém nasido", o descontrole acontece em 5 delas. No total, houve 28 incidências, com isso, aproximadamente 52,8% de sua vida (de 53 anos) foi baseada em compulsão e impulsividade. winston foi instável durante mais da metade de sua vida, portanto.
 
@@ -136,5 +133,4 @@ group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winston
 > o maior valor de donuts comidos em um ano foi 2500 donuts, mas esta quantidade foi ingerida várias vezes em idades diferentes. houve 21 registros anuais com essa quantidade, sabendo que foram 28 incidencias na vida acima da media; podemos afirmar então, que 75% das incidencias foram representadas pelo nivel de compulsão MÁXIMO de wiston, demonstrando que durante o período de compulsão ele mantém costumes REALMENTE nocivos na maior parte do tempo
 
 COM ISSO, propõe-se a interrupção absoluta de donuts, sem doses homeopáticas para desmame pois, segundo as evidências demonstradas, winston não tem capacidade de consumir moderadamente.
-
 */
