@@ -1,0 +1,64 @@
+-- Cantores/bandas e generos e feats.
+/* respondidas: 
+nacionalidade de cada artista
+quais são os artistas envolvidos em cada colaboração
+quais collabs são internacionais
+*/
+
+-- grupos e artistas 
+CREATE table artistas (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT, ano INTEGER, genero TEXT); 
+INSERT into artistas (nome, ano, genero) values ("Andy Shauf", 1987, "Indie Pop"); 
+INSERT into artistas (nome, ano, genero) values ("Nicolas Jaar", 1990, "Experimental");
+INSERT into artistas (nome, ano, genero) values ("Crystal Castles", 2003, "Witch House"); 
+INSERT into artistas (nome, ano, genero) values ("Uffie", 1987, "Synth Pop");
+INSERT into artistas (nome, ano, genero) values ("Charli XCX", 1992 ,"Dance Pop"); 
+INSERT into artistas (nome, ano, genero) values ("Portishead", 1991, "Trip Hop");
+INSERT into artistas (nome, ano, genero) values ("A.G.Cook",1990 ,"PC Music");
+INSERT into artistas (nome, ano, genero) values ("Danny L Harle", 1989, "PC Music");
+INSERT into artistas (nome, ano, genero) values ("Clairo", 1998 ,"Indie Pop"); 
+
+SELECT * FROM artistas;
+
+-- país de origem 
+CREATE table pais (id INTEGER PRIMARY KEY AUTOINCREMENT, pais TEXT);
+INSERT into pais (pais) VALUES ("Canada");
+INSERT into pais (pais) VALUES ("Estados Unidos");
+INSERT into pais (pais) VALUES ("Canada");
+INSERT into pais (pais) VALUES ("Estados Unidos");
+INSERT into pais (pais) VALUES ("Reino Unido"); 
+INSERT into pais (pais) VALUES ("Reino Unido"); 
+INSERT into pais (pais) VALUES ("Reino Unido");
+INSERT into pais (pais) VALUES ("Reino Unido");
+INSERT into pais (pais) VALUES ("Estados Unidos"); 
+
+SELECT * FROM pais; 
+
+-- feats/collabs
+CREATE table feats (id INTEGER PRIMARY KEY AUTOINCREMENT, artista1 INTEGER, artista2 INTEGER, musica TEXT);
+
+INSERT INTO feats (artista1, artista2, musica) VALUES (4,5,"BabyGirl");
+INSERT INTO feats (artista1, artista2, musica) VALUES (5,8, "After the Afterparty"); 
+INSERT INTO feats (artista1, artista2, musica) VALUES (7,8, "ME4U");
+INSERT INTO feats (artista1, artista2, musica) VALUES (9,8, "Blue Angel"); 
+INSERT INTO feats (artista1, artista2, musica) VALUES (5,9, "February 2017");
+INSERT INTO feats (artista1, artista2, musica) VALUES (5,7, "Forever");
+
+SELECT * FROM feats; 
+
+---------- nacionalidade de cada artista
+SELECT pais.pais as nacionalidade_ou_origem, artistas.nome FROM pais
+JOIN artistas 
+ON artistas.id = pais.id; 
+
+---------- quais são os artistas envolvidos em cada colaboração? 
+SELECT a.nome as artista_1, b.nome as artista_2, musica FROM feats 
+JOIN artistas a ON feats.artista1 = a.id
+JOIN artistas b ON feats.artista2 = b.id;
+
+---------- collabs são internacionais ? 
+SELECT a.pais as país_1 ,b.pais as país_2, musica, case WHEN a.pais = b.pais THEN "não" ELSE "sim" END "internacional?" FROM feats 
+JOIN pais a
+ON feats.artista1 = a.id
+JOIN pais b
+ON feats.artista2 = b.id;
