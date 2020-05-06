@@ -124,13 +124,14 @@ group by years_old HAVING donuts_eaten >= (SELECT AVG(donuts_eaten) FROM winston
 /*    conclusões mais importantes:
 ===== considera-se descontrole o consumo anual ACIMA da média considerando a vida toda de Winston ======
 
-> das 10 fases, mas 9 se desconsiderar "recém nasido", o descontrole acontece em 5 delas. No total, houve 28 incidências, com isso, aproximadamente 52,8% de sua vida (de 53 anos) foi baseada em compulsão e impulsividade. winston foi instável durante mais da metade de sua vida, portanto.
+> Das 10 fases, mas 9 se desconsiderar "recém nascido", o descontrole acontece em 5 delas. No total, houve 28 incidências, com isso, aproximadamente 52,8% de sua vida (de 53 anos) foi baseada em compulsão e impulsividade. Portanto, Winston foi instável durante MAIS DA METADE de sua vida.
 
-> a fase com maior número de descontrole é a young adult winston, que compreende a faixa entre 20 e 29 anos. esta fase possui 10 anos de duração e tem registro e 10 descontroles, portanto ela foi INTEIRAMENTE marcada pelo seu transtorno alimentar 
+> A fase com maior número de descontrole é a young adult winston, que compreende a faixa entre 20 e 29 anos. Esta fase possui 10 anos de duração e tem registro e 10 descontroles, portanto ela foi INTEIRAMENTE marcada pelo seu transtorno alimentar 
 
-> a idade média de compulsão não é uma métrica explicativa, já que a reincidência de descontrole ocorreu em todas as casas de dezenas de idade durante a vida e isso desnivela esse indicador 
+> A idade média de compulsão não é uma métrica explicativa, já que a reincidência de descontrole ocorreu em todas as casas de dezenas de idade durante a vida e isso desnivela essa medida como indicador 
 
-> o maior valor de donuts comidos em um ano foi 2500 donuts, mas esta quantidade foi ingerida várias vezes em idades diferentes. houve 21 registros anuais com essa quantidade, sabendo que foram 28 incidencias na vida acima da media; podemos afirmar então, que 75% das incidencias foram representadas pelo nivel de compulsão MÁXIMO de wiston, demonstrando que durante o período de compulsão ele mantém costumes REALMENTE nocivos na maior parte do tempo
+> O maior valor de donuts comidos em um ano foi 2500 donuts, mas esta quantidade foi ingerida várias vezes em idades diferentes. Houve 21 registros anuais com essa quantidade, sabendo que foram 28 incidências acima da média no total, podemos afirmar então, que 75% das incidencias foram representadas pelo nivel de compulsão MÁXIMO de wiston, demonstrando que durante o período de compulsão ele mantém costumes COMPLETAMENTE nocivos na maior parte do tempo
 
 COM ISSO, propõe-se a interrupção absoluta de donuts, sem doses homeopáticas para desmame pois, segundo as evidências demonstradas, winston não tem capacidade de consumir moderadamente.
+
 */
